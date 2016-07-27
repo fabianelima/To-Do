@@ -1,36 +1,53 @@
+
+/*
+		To-Do App 0.1
+		-----------------------------------------------
+		Fabiane Lima 2016
+		Feito em CoffeScript. Baseado no tutorial do Code Maven: http://code-maven.com/todo-in-html-and-javascript
+ */
+
 (function() {
   $(function() {
-    var i, teste;
-    i = 0;
-    teste = {
-      teste1: 'testetes testes',
-      teste2: 'lçdkgjçidjlk'
-    };
-    $('.add-list').on('click', function() {
-      $(this).hide();
-      return $('.new-list').show();
-    });
-    $('.new-list .ok').on('click', function() {
-      if ($('.add-title').val() === '' || $('.add-item').val() === '') {
-        return $('.add-item,.add-title').css('background', 'red');
-      } else {
-        i++;
-        localStorage.setItem('list', $('.add-title').val());
-        localStorage.setItem('item' + i, $('.add-item').val());
-        $('.list h3').html(localStorage.getItem('list'));
-        $('.list ul').append('<li>' + localStorage.getItem('item' + i) + '</li>');
-        $('.add-title').hide();
-        $('.add-item').removeAttr('required');
-        $('.add-item').val('');
-        $('.list').show();
-        localStorage.setItem('teste', teste.teste1);
-        return console.log(localStorage.getItem('teste'));
+
+    /* função que pega as to-do lists */
+    var add, getTodos, show;
+    getTodos = function() {
+      var todos, todos_str;
+      todos = [];
+      todos_str = localStorage.getItem('todo');
+      if (todos_str !== null) {
+        todos = JSON.parse(todos_str);
       }
-    });
-    return $('.sv').on('click', function() {
-      $('.lists').show();
-      $('.lists').append('<div class="list' + i + '">' + $('.list').html() + '</div>');
-      return $('.list').html('');
+      return todos;
+    };
+
+    /* adiciona um novo item à to-do list */
+    add = function() {
+      var task, todos;
+      task = $('.task').val();
+      todos = getTodos();
+      todos.push(task);
+      localStorage.setItem('todo', JSON.stringify(todos));
+      show();
+      return false;
+    };
+
+    /* exibe a lista de to-dos */
+    show = function() {
+      var i, showtodo, todos, _i, _len, _ref;
+      todos = getTodos;
+      showtodo = '<ul>';
+      _ref = todos.length;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        i = _ref[_i];
+        showtodo += '<li>' + todos[i] + '</li>';
+      }
+      showtodo += '</ul>';
+      return $('.todos').html(showtodo);
+    };
+    return $('.add').on('click', function() {
+      add();
+      return show();
     });
   });
 

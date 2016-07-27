@@ -17,27 +17,3 @@
   position: relative;
   background: #e7e7e7;
 }
-#container .add-list {
-  background: #075;
-  color: #fff;
-  padding: 1%;
-  text-align: center;
-  cursor: pointer;
-}
-#container .new-list {
-  width: 96%;
-  padding: 1%;
-  margin: 1%;
-  display: none;
-}
-#container .new-list input {
-  border: 1px solid #759;
-}
-#container .new-list .bt {
-  padding: 1%;
-  background: #759;
-  cursor: pointer;
-}
-#container .list {
-  display: none;
-}
