@@ -4,6 +4,13 @@
 		-----------------------------------------------
 		Fabiane Lima 2016
 		Feito em CoffeScript. Baseado no tutorial do Code Maven: http://code-maven.com/todo-in-html-and-javascript
+
+		=> Known issues:
+			- O 'for' que exibe os 'todos' não estava funcionando; por algum motivo ele não sabe lidar com 'for i in todos.length', tive que fazer um xunxo.
+			- É muito bizarra a forma como o CoffeeScript compila os 'for', preciso ver a forma alternativa que o Aléssio sugeriu.
+			- Não sei se ele está compilando em JS direito, ele suja muito o código.
+			- O Coffee bota 'return' em tudo, inclusive no início da função de clique do botão [equivalente a 'addEventListener()' no JS puro, '.on('click')' no jQuery].
+			- Ele não imprime os 'todos' que já existem no localStorage; ver como fazer isso.
  */
 
 (function() {
@@ -34,20 +41,21 @@
 
     /* exibe a lista de to-dos */
     show = function() {
-      var i, showtodo, todos, _i, _len, _ref;
-      todos = getTodos;
+      var i, j, showtodo, todos, _i;
+      todos = getTodos();
       showtodo = '<ul>';
-      _ref = todos.length;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        i = _ref[_i];
+      j = todos.length;
+      for (i = _i = 0; 0 <= j ? _i < j : _i > j; i = 0 <= j ? ++_i : --_i) {
         showtodo += '<li>' + todos[i] + '</li>';
       }
       showtodo += '</ul>';
-      return $('.todos').html(showtodo);
+      $('.todos').html(showtodo);
     };
+
+    /* evento clique */
     return $('.add').on('click', function() {
       add();
-      return show();
+      show();
     });
   });
 
