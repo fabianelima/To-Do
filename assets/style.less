@@ -4,10 +4,50 @@
 
 #container {
 	width: 100%;
-	max-width: 1080px;
-	margin: 0 auto;
+	max-width: 400px;
+	margin: 2% auto;
+	padding: 1% 2%;
+	border-radius: 1em;
 	font-size: 1.1em;
 	font-family: 'Open Sans', sans-serif;
 	position: relative;
-	background: #e7e7e7;
+	background: linear-gradient(to bottom, #e7e7e7 0%,#ffffff 100%);
+
+	h1 {
+		text-align: center;
+		color: #568;
+		text-transform: uppercase;
+		padding-bottom: 3%;
+	}
+
+	ul {
+		list-style: square;
+		margin-left: 4%;
+	}
+
+	.todos {
+		padding: 1%;
+	}
+
+	.add {
+		padding: 2%;
+		background: #568;
+		color: #fff;
+		border-radius: 0.5em;
+		cursor: pointer;
+	}
+
+	.task {
+		padding: 2%;
+		border: 1px solid #568;
+		border-radius: 0.5em;
+		background: linear-gradient(to bottom, #e7e7e7 0%,#ffffff 100%);
+	}
+
+	.remove {
+		padding: 1%;
+		cursor: pointer;
+		font-weight: bold;
+		color: #568;
+	}
 }

@@ -10,6 +10,7 @@
 			- Não sei se ele está compilando em JS direito, ele suja muito o código.
 			- O Coffee bota 'return' em tudo, inclusive no início da função de clique do botão [equivalente a 'addEventListener()' no JS puro, '.on('click')' no jQuery].
 			- Se coloco o 'remove()' dentro do 'show()', como no tutorial que estou seguindo, dá um erro de exceção do jQuery. Vou ver como ele compila isso.
+			- Cada vez que atualizo a página, ele remove um item da lista. o_O
 ###
 
 $ ->
@@ -48,17 +49,15 @@ $ ->
 			showtodo += '<li>' + todos[i] + '<button class="remove" id="' + i + '">&times;</button></li>'
 		showtodo += '</ul>'
 		
-		$('.todos').html(showtodo)				# Talvez se eu mudar isso aqui eu consiga fazer a lista atualizar na hora
+		$('.todos').html(showtodo)				# Talvez se eu mudar isso aqui consiga fazer a lista atualizar na hora
 		return
 
-	### evento add to-do ###
+	### evento add item no to-do ###
 	$('.add').on 'click', ->
 		add()
 		return
 
-	### evento remove to-do ###
-	$('.remove').on 'click', ->
-		remove()
-		return
+	### evento remove item do to-do ###
+	$('.remove').on('click', remove())
 
 	show()
