@@ -68,6 +68,7 @@
     /* evento add item no to-do */
     $('.add').on('click', function() {
       add();
+      show();
     });
     $('.remove').on('click', function() {
       remove();

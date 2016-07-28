@@ -56,6 +56,7 @@ $ ->
 	### evento add item no to-do ###
 	$('.add').on 'click', ->
 		add()
+		show()
 		return
 
 	$('.remove').on 'click', ->
