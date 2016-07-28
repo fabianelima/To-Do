@@ -51,18 +51,15 @@ $ ->
 		showtodo += '</ul>'
 		
 		$('.todos').html(showtodo)
-
-		buttons = $('.remove')					# aqui rola uma jQuery exception
-		l = buttons.length
-		console.log(buttons[0])
-		###for k in [0...l]
-			buttons[k].on 'click', ->
-				remove###
 		return
 
 	### evento add item no to-do ###
 	$('.add').on 'click', ->
 		add()
+		return
+
+	$('.remove').on 'click', ->
+		remove()
 		return
 
 

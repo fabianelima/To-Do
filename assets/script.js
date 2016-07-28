@@ -54,7 +54,7 @@
 
     /* exibe a lista de to-dos */
     show = function() {
-      var buttons, i, j, l, showtodo, todos, _i;
+      var i, j, showtodo, todos, _i;
       todos = getTodos();
       showtodo = '<ul>';
       j = todos.length;
@@ -63,19 +63,14 @@
       }
       showtodo += '</ul>';
       $('.todos').html(showtodo);
-      buttons = $('.remove');
-      l = buttons.length;
-      console.log(buttons[0]);
-
-      /*for k in [0...l]
-      			buttons[k].on 'click', ->
-      				remove
-       */
     };
 
     /* evento add item no to-do */
     $('.add').on('click', function() {
       add();
+    });
+    $('.remove').on('click', function() {
+      remove();
     });
     return show();
   });
