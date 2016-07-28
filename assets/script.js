@@ -10,7 +10,7 @@
 			- É muito bizarra a forma como o CoffeeScript compila os 'for', preciso ver a forma alternativa que o Aléssio sugeriu.
 			- Não sei se ele está compilando em JS direito, ele suja muito o código.
 			- O Coffee bota 'return' em tudo, inclusive no início da função de clique do botão [equivalente a 'addEventListener()' no JS puro, '.on('click')' no jQuery].
-			- A função 'remove' não está funcionando.
+			- Se coloco o 'remove()' dentro do 'show()', como no tutorial que estou seguindo, dá um erro de exceção do jQuery. Vou ver como ele compila isso.
  */
 
 (function() {
@@ -52,7 +52,7 @@
 
     /* exibe a lista de to-dos */
     show = function() {
-      var buttons, i, j, k, showtodo, todos, _i, _j, _len;
+      var i, j, showtodo, todos, _i;
       todos = getTodos();
       showtodo = '<ul>';
       j = todos.length;
@@ -61,17 +61,16 @@
       }
       showtodo += '</ul>';
       $('.todos').html(showtodo);
-      buttons = $('.remove');
-      for (_j = 0, _len = j.length; _j < _len; _j++) {
-        k = j[_j];
-        buttons[k].on('click', remove());
-      }
     };
 
-    /* evento clique */
+    /* evento add to-do */
     $('.add').on('click', function() {
       add();
-      show();
+    });
+
+    /* evento remove to-do */
+    $('.remove').on('click', function() {
+      remove();
     });
     return show();
   });
