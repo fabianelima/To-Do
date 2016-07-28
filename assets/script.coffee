@@ -9,7 +9,7 @@
 			- É muito bizarra a forma como o CoffeeScript compila os 'for', preciso ver a forma alternativa que o Aléssio sugeriu.
 			- Não sei se ele está compilando em JS direito, ele suja muito o código.
 			- O Coffee bota 'return' em tudo, inclusive no início da função de clique do botão [equivalente a 'addEventListener()' no JS puro, '.on('click')' no jQuery].
-			- Ele não imprime os 'todos' que já existem no localStorage; ver como fazer isso.
+			- A função 'remove' não está funcionando.
 ###
 
 $ ->
@@ -29,15 +29,30 @@ $ ->
 		show()
 		return false
 
+	### remove itens ###
+	remove = ->
+		id = $(this).attr('id')
+		todos = getTodos()
+		todos.splice(id,1)
+		localStorage.setItem('todo', JSON.stringify(todos))
+		show()
+		return false
+
 	### exibe a lista de to-dos ###
 	show = ->
 		todos = getTodos()
+
 		showtodo = '<ul>'
 		j = todos.length
 		for i in [0...j]
-			showtodo += '<li>' + todos[i] + '</li>'
+			showtodo += '<li>' + todos[i] + '<button class="remove" id="' + i + '">&times;</button></li>'
 		showtodo += '</ul>'
+		
 		$('.todos').html(showtodo)
+
+		buttons = $('.remove')
+		for k in j
+			buttons[k].on('click', remove())
 		return
 
 	### evento clique ###
@@ -45,3 +60,5 @@ $ ->
 		add()
 		show()
 		return
+
+	show()
