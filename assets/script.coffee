@@ -10,7 +10,6 @@
 			- Não sei se ele está compilando em JS direito, ele suja muito o código.
 			- O Coffee bota 'return' em tudo, inclusive no início da função de clique do botão [equivalente a 'addEventListener()' no JS puro, '.on('click')' no jQuery].
 			- Se coloco o 'remove()' dentro do 'show()', como no tutorial que estou seguindo, dá um erro de exceção do jQuery. Vou ver como ele compila isso.
-			- Descobri porque o botão de remover a task não funciona, e é muito óbvio: ele é gerado pelo código, não funciona com jQuery, pelo menos. Talvez se usar addEventListener(), sei lá.
 			- Aceita strings vazias.
 ###
 
@@ -51,11 +50,6 @@ $ ->
 		showtodo += '</ul>'
 		
 		$('.todos').html(showtodo)
-
-		buttons = $('.remove')
-		m = buttons.length
-		for n in m
-			buttons[n].addEventListener('click', remove)
 		return
 
 	### evento add item no to-do ###
@@ -63,5 +57,8 @@ $ ->
 		add()
 		show()
 		return
+
+	$(document).on 'click', '.remove', ->
+		remove()
 
 	show()
