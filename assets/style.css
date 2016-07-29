@@ -31,6 +31,9 @@
   list-style: square;
   margin-left: 5%;
 }
+#container li {
+  margin: 4% 0;
+}
 #container .todos {
   padding: 1%;
 }

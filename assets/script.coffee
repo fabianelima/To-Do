@@ -7,10 +7,12 @@
 		=> Known issues:
 			- O 'for' que exibe os 'todos' não estava funcionando; por algum motivo ele não sabe lidar com 'for i in todos.length', tive que fazer um xunxo.
 			- É muito bizarra a forma como o CoffeeScript compila os 'for', preciso ver a forma alternativa que o Aléssio sugeriu.
-			- Não sei se ele está compilando em JS direito, ele suja muito o código.
-			- O Coffee bota 'return' em tudo, inclusive no início da função de clique do botão [equivalente a 'addEventListener()' no JS puro, '.on('click')' no jQuery].
-			- Se coloco o 'remove()' dentro do 'show()', como no tutorial que estou seguindo, dá um erro de exceção do jQuery. Vou ver como ele compila isso.
-			- Aceita strings vazias.
+
+		=> Futuros features:
+			- Fazer o botão de remove ficar visível só quando o mouse passa em cima da task
+			- Impedir uso de tags HTML [validar formulario]
+			- Enriquecer a interface, permitindo que mais listas sejam criadas [talvez um daqueles features que não vão ser implementados nunca, mas fica aqui na lista só pra constar pois vai que....
+			- Ver se ele está pegando direitinho qual botão de remove é clicado [acabei de ver sem querer que quando se intenta deletar um item, ele deleta outro]
 ###
 
 $ ->
@@ -25,9 +27,12 @@ $ ->
 	add = ->
 		task = $('.task').val()
 		todos = getTodos()
-		todos.push task
-		localStorage.setItem('todo', JSON.stringify(todos))
-		show()
+		if task == '' or task == null then alert('Campo vazio!')
+		# acrescentar aqui um validador de campo que impede uso de tags
+		else
+			todos.push task
+			localStorage.setItem('todo', JSON.stringify(todos))
+			show()
 		return false
 
 	### remove itens ###
@@ -35,6 +40,7 @@ $ ->
 		id = $(this).attr('id')
 		todos = getTodos()
 		todos.splice(id,1)
+		console.log(todos.splice(id,1))
 		localStorage.setItem('todo', JSON.stringify(todos))
 		show()
 		return false
@@ -46,7 +52,7 @@ $ ->
 		showtodo = '<ul>'
 		j = todos.length
 		for i in [0...j]
-			showtodo += '<li>' + todos[i] + '<button class="remove">&times;</button></li>'
+			showtodo += '<li>' + todos[i] + '<button class="remove" id="' + i + '">&times;</button></li>'
 		showtodo += '</ul>'
 		
 		$('.todos').html(showtodo)
@@ -56,8 +62,12 @@ $ ->
 	$('.add').on 'click', ->
 		add()
 		show()
+		$('.task').val('')
 		return
 
+	### Essa função ainda precisa ser revista porque ela deleta várias 
+	coisas ao mesmo tempo, mas por enquanto é o que tá mais próximo de
+	funcionar ###
 	$(document).on 'click', '.remove', ->
 		remove()
 
