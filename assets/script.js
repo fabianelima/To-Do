@@ -78,12 +78,12 @@
       $('.task').val('');
     });
 
-    /* Essa função ainda precisa ser revista porque ela deleta várias 
-    	coisas ao mesmo tempo, mas por enquanto é o que tá mais próximo de
-    	funcionar
+    /* Agora a função tá deletando uma coisa de cada vez, mas elas voltam se atualizar 
+    	a página, ou na hora de adicionar outro item.
      */
     $(document).on('click', '.remove', function() {
-      $(this).parent().remove();
+      $(this).parent(remove());
+      console.log($(this).parent().html() + ' troço clicado');
     });
     return show();
   });
