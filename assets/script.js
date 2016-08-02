@@ -83,7 +83,7 @@
     	funcionar
      */
     $(document).on('click', '.remove', function() {
-      return remove();
+      $(this).parent().remove();
     });
     return show();
   });

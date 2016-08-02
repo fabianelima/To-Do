@@ -69,6 +69,7 @@ $ ->
 	coisas ao mesmo tempo, mas por enquanto é o que tá mais próximo de
 	funcionar ###
 	$(document).on 'click', '.remove', ->
-		remove()
+		$(this).parent().remove()
+		return
 
 	show()
